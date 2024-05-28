@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "missingMj": "tsx src/cli/generateMissingJpgsMJPrompts.ts",
+    "genMonsterJpgs": "src/cli/generateSmallImagesFromPngs.sh"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",
