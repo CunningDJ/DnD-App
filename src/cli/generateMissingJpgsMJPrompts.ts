@@ -4,9 +4,11 @@ import fs from 'fs';
 
 import { dndApolloClient } from '@/cli/cliUtils';
 import { getMonsterImagePath } from "@/components/DndApollo/dndApi";
-// import { GET_MONSTERS_QUERY } from "@/components/Monster/queries";
+
 import { gql } from '@apollo/client';
+
 const GET_MONSTERS_QUERY = gql`query MonstersQuery($limit: Int!) { monsters(limit: $limit) { name index } }`;
+
 dndApolloClient.query<{ monsters: Monster[] }>({
     query: GET_MONSTERS_QUERY,
     variables: {limit: 400}
@@ -36,7 +38,7 @@ dndApolloClient.query<{ monsters: Monster[] }>({
         if (groupedMissingNames.length > 0) {
             console.log('Midjourney Prompts for missing Monster Images:\n===  ===  ===');
             groupedMissingNames.forEach(namesGroup => {
-                console.log(`{${namesGroup.join(', ')}}, style of dungeons & dragons monster manual`);
+                console.log(`{${namesGroup.map(name => name.replaceAll(',','')).join(', ')}}, style of dungeons & dragons monster manual`);
             })
         }
     })
