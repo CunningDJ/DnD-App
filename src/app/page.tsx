@@ -1,24 +1,26 @@
 "use client";
 
-import { getMonsterImagePath } from "@/components/DndApollo/dndApi";
-import MonsterCard from "../components/Monster/MonsterCard";
-import { GET_MONSTERS_QUERY } from "../components/Monster/queries";
-import { useQuery } from "@apollo/client";
-import { Grid } from '@mui/material';
+import Image from "next/image";
 
-const MONSTERS_PAGE_SIZE = 20;
+import { Divider, Stack } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
-export default function MonstersListPage() {
-  const { loading, data, error } = useQuery<{ monsters: Monster[] }>(GET_MONSTERS_QUERY, {variables: {limit: MONSTERS_PAGE_SIZE}});
-  const { monsters } = data || {};
+import { H1, H3 } from "@/components/Typography";
+import LinkButton from "@/components/LinkButton";
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-  return monsters && (
-    <Grid container spacing={2}>
-      {monsters.map((monster, idx) => (
-        <Grid item xs={3} key={idx}><MonsterCard data={monster} key={idx} /></Grid>
-      ))}
-    </Grid>
+
+export default function HomePage() {
+  return (
+    <>
+      <Stack justifyContent="center" alignItems="center" direction="column">
+        <Image src="/img/logo/logo.full.png" alt="hero" width={500} height={500} />
+        <H1>Welcome to D&D</H1>
+        <H3>Choices</H3>
+        <Divider />
+        <LinkButton href="/monsters">
+            Monster
+        </LinkButton>
+      </Stack>
+    </>
   );
 }

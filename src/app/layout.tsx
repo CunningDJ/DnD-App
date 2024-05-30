@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
+import Grid from '@mui/material/Unstable_Grid2';
 
 import AppProvider from "./provider";
 
@@ -16,12 +17,12 @@ const RootLayout: FC<Readonly<PropsWithChildren>> = ({
 }) => {
   return (
     <html lang="en">
-        <body className={inter.className}>
-          <AppProvider>
-            {children}
-          </AppProvider>
-        </body>
-      </html>
+      <body className={inter.className}>
+        <AppProvider>
+          {children}
+        </AppProvider>
+      </body>
+    </html>
   );
 }
 

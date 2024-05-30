@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "missingMj": "tsx src/cli/generateMissingJpgsMJPrompts.ts",
     "genMonsterJpgs": "src/cli/generateSmallImagesFromPngs.sh"
   },
