@@ -3,7 +3,7 @@
 import fs from 'fs';
 
 import { dndApolloClient } from '@/cli/cliUtils';
-import { getMonsterImagePath } from "@/components/DndApollo/dndApi";
+import { getMonsterImagePath } from '@/components/DndApollo/dndApi';
 
 import { gql } from '@apollo/client';
 

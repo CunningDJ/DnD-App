@@ -1,6 +1,8 @@
 {
   "extends": "next/core-web-vitals",
+  "plugins": ["@stylistic"],
   "rules": {
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "@stylistic/quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }

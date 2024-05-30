@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import MonsterCard from "../../components/Monster/MonsterCard";
-import { GET_MONSTERS_QUERY } from "../../components/Monster/queries";
-import { useQuery } from "@apollo/client";
+import MonsterCard from '../../components/Monster/MonsterCard';
+import { GET_MONSTERS_QUERY } from '../../components/Monster/queries';
+import { useQuery } from '@apollo/client';
 import Grid from '@mui/material/Unstable_Grid2';
 
 const MONSTERS_PAGE_SIZE = 20;

@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import Image from 'next/image';
 
 import { Divider, Stack } from '@mui/material';
 
-import { H1, H3 } from "@/components/Typography";
-import LinkButton from "@/components/LinkButton";
+import { H1, H3 } from '@/components/Typography';
+import LinkButton from '@/components/LinkButton';
 
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
         <H3>Choices</H3>
         <Divider />
         <LinkButton href="/monsters">
-            Monster
+          Monster
         </LinkButton>
       </Stack>
     </>
