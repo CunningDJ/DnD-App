@@ -2,6 +2,10 @@ import { Typography, TypographyProps } from '@mui/material';
 import { FC } from 'react';
 
 // Header
+export const Title: FC<TypographyProps> = ({ children, ...props }) => (
+  <Typography variant="title" {...props}>{children}</Typography>
+);
+
 export const H1: FC<TypographyProps> = ({ children, ...props }) => (
   <Typography variant="h1" {...props}>{children}</Typography>
 );
