@@ -1,7 +1,7 @@
 'use client';
 
-import { Bungee_Spice } from 'next/font/google';
 import { createTheme } from '@mui/material/styles';
+import { Bungee_Spice } from 'next/font/google';
 
 const bungeeSpice = Bungee_Spice({
   weight: ['400'],

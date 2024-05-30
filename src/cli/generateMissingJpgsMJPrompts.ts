@@ -2,10 +2,11 @@
 
 import fs from 'fs';
 
+import { gql } from '@apollo/client';
+
 import { dndApolloClient } from '@/cli/cliUtils';
 import { getMonsterImagePath } from '@/components/DndApollo/dndApi';
 
-import { gql } from '@apollo/client';
 
 const GET_MONSTERS_QUERY = gql`query MonstersQuery($limit: Int!) { monsters(limit: $limit) { name index } }`;
 

@@ -1,8 +1,10 @@
 {
   "extends": "next/core-web-vitals",
-  "plugins": ["@stylistic"],
+  "plugins": ["@stylistic", "import"],
   "rules": {
     "indent": ["error", 2],
-    "@stylistic/quotes": ["error", "single", { "allowTemplateLiterals": true }]
+    "@stylistic/quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "import/order": ["error", {"alphabetize": {"order": "asc", "caseInsensitive": true}, "newlines-between": "always"}],
+    "import/first": ["error"]
   }
 }

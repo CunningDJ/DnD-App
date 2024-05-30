@@ -1,9 +1,9 @@
 'use client';
 
+import { Button } from '@mui/material';
 import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 
-import { Button } from '@mui/material';
 
 interface LinkButtonProps {
   href: string;
