@@ -1,4 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+
+// Actual monsters count around 334, so this is a safe upper bound
+export const MONSTERS_QUERY_MAX_SIZE = 400;
+
 
 const fragments = `
 fragment monsterArmorClass on MonsterArmorClass {
@@ -50,61 +54,56 @@ fragment monsterAttack on MonsterAttack {
 
 `;
 
-`
-armor_class {
-  ...monsterArmorClass
-  }
-attacks {
-  name
-  ...monsterAttack
-}
-  
-`
-
-export const GET_MONSTERS_QUERY = gql`
-query MonstersQuery($limit: Int!) {
-  monsters(limit: $limit) {
+const MONSTER_BASIC_INFO_FRAGMENT = gql`
+  fragment MonsterBasicInfo on Monster {
     index
     name
     alignment
     desc
+    size
+    image
+    type
+  }
+`;
+
+const MONSTER_DETAILED_INFO_FRAGMENT = gql`
+  fragment MonsterDetailedInfo on Monster {
+    ...MonsterBasicInfo
     actions {
-    actions {
-      action_name
-      type
-      count
-    }
-    attacks {
-      name
-    }
+      actions {
+        action_name
+        type
+        count
+      }
+      attacks {
+        name
+      }
     }
     condition_immunities {
-    desc
-    name
-    index
+      desc
+      name
+      index
     }
     intelligence
-    image
     proficiency_bonus
-    size
     senses {
-    blindsight
-    darkvision
-    passive_perception
-    tremorsense
-    truesight
+      blindsight
+      darkvision
+      passive_perception
+      tremorsense
+      truesight
     }
     strength
     wisdom
     xp
     type
     speed {
-    burrow
-    climb
-    fly
-    hover
-    swim
-    walk
+      burrow
+      climb
+      fly
+      hover
+      swim
+      walk
     }
     dexterity
     charisma
@@ -115,30 +114,52 @@ query MonstersQuery($limit: Int!) {
     subtype
     hit_dice
     forms {
-    index
-    image
-    name
+      index
+      image
+      name
     }
     legendary_actions {
-    name
-    desc
+      name
+      desc
     }
     damage_immunities
     damage_resistances
     damage_vulnerabilities
     hit_points_roll
     proficiencies {
-    proficiency {
-      name
-    }
-    value
+      proficiency {
+        name
+      }
+      value
     }
     special_abilities {
-    name
+      name
     }
     reactions {
-    name
+      name
     }
   }
-  }
+  ${MONSTER_BASIC_INFO_FRAGMENT}
 `;
+
+const GET_MONSTERS_LISTING_QUERY = gql`
+query MonstersQuery($limit: Int!, $skip: Int, $name: String) {
+  monsters(limit: $limit, skip: $skip, name: $name) {
+    ...MonsterBasicInfo
+  }
+}
+
+${MONSTER_BASIC_INFO_FRAGMENT}
+`;
+
+interface MonstersGQLQueryVariables {
+  limit: number;
+  skip: number;
+  name: string;
+}
+
+type UseMonstersQueryVariables = Partial<MonstersGQLQueryVariables>;
+
+export const useMonstersQuery = ({ name = '', limit = MONSTERS_QUERY_MAX_SIZE, skip = 0 }: UseMonstersQueryVariables)  => {
+  return useQuery<{ monsters: Monster[] }, MonstersGQLQueryVariables>(GET_MONSTERS_LISTING_QUERY, { variables: { limit, skip, name } });
+};

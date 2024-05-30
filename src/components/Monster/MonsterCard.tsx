@@ -1,8 +1,9 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
-import { Body1 } from '../Typography';
+
 import { getMonsterImagePath } from '../DndApollo/dndApi';
+import { Body1 } from '../Typography';
 
 interface MonsterCardProps {
   data: Monster;
