@@ -1,7 +1,12 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { DndApolloProvider } from "../components/DndApollo";
+
+import { DndApolloProvider } from '../components/DndApollo';
+import theme from './theme';
+
+
 
 const AppProvider: FC<Readonly<PropsWithChildren>> = ({
   children,
@@ -9,8 +14,10 @@ const AppProvider: FC<Readonly<PropsWithChildren>> = ({
   return (
     <AppRouterCacheProvider>
       <DndApolloProvider>
-        <CssBaseline />
-        {children}
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
       </DndApolloProvider>
     </AppRouterCacheProvider>
   );

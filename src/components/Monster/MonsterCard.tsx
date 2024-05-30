@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
 import { Card, CardContent, CardHeader, CardMedia } from '@mui/material';
-import { Body1, H1 } from '../Typography';
+import { Body1 } from '../Typography';
 import { getMonsterImagePath } from '../DndApollo/dndApi';
 
 interface MonsterCardProps {
@@ -17,7 +17,6 @@ const MonsterCard = ({ data: monster }: MonsterCardProps) => {
       <CardHeader title={monster.name}/>
       {image && <CardMedia image={image} component="img" />}
       <CardContent>
-        {/* <H1>{monster.name}</H1> */}
         <Body1>{monster.size} {monster.type}, {monster.alignment}</Body1>
       </CardContent>
       {/* <p>Armor Class: {monster.armor_class}</p>

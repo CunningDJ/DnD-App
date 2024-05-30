@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { FC, PropsWithChildren } from "react";
-import Grid from '@mui/material/Unstable_Grid2';
 
 import AppProvider from "./provider";
 
