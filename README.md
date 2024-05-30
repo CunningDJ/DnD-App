@@ -1,9 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center"><img src="public/img/logo/logo.transp.full.png" width="300px"></p>
 
-## Getting Started
+# Dungeons & Dragons NextJS App
+This is a full stack web app that allows someone to search for Dungeons & Dragons info and pictures.  It's a fun project to explore some of the finer points of NextJS, graphQL and Material, and play with Midjourney (filling out the second half of the Monster Manual and creating the logo and favicon with generated images), among other things.  Enjoy!
 
-First, run the development server:
 
+## Development
+### Run the development server
 ```bash
 npm run dev
 # or
@@ -14,23 +16,28 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Lint & Fix
+```bash
+npm run lint # Check the lint
+# or
+npm run lint:fix # Check & auto-fix the lint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding Monster Images
+Below is the system for creating and adding new or missing monster images to the server.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### To generate Midjourney prompts for missing Monster images
+This will fetch all of the monster names, check which corresponding image files are missing (see "to add more monster images to the server" below for the file name syntax), and print out the corresponding Midjourney prompts in chunks of 4 permutations (Midjourney's max permutations per prompt) to make generating the missing images easy.
 
-## Learn More
+```bash
+npm run missingMj
+```
 
-To learn more about Next.js, take a look at the following resources:
+Once the monster images are generated in Midjourney (or found elsewhere), follow the instructions below to serve them in the server.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### To add more monster images to the server
+1. Add a higher-res monster pngs to public/img/monsters/png/, with hyphens instead of spaces, lowercase, and only parentheses preserved aside from alphanumeric, e.g.
+   * "Goblin Fiend (Fire)" should be named `goblin-fiend-(fire).png`
+   * "Red Hawk, Night" should be named `red-hawk-night.png`
+2. Run `npm run genMonsterJpgs` to convert all of these high-res pngs into more website-friendly, medium-res (max dimension 600px) jpegs and move them into the main server folder
+3. `git add` the new `.jpg`s in public/img/monsters (they should show up as untracked in `git status`)

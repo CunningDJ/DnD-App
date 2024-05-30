@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Stack justifyContent="center" alignItems="center" direction="column">
-        <Image src="/img/logo/logo.transp.150px.png" alt="hero" width={500} height={500} />
+        <Image src="/img/logo/logo.transp.full.png" alt="hero" width={500} height={500} />
         <H1>Welcome to D&D</H1>
         <H3>Choices</H3>
         <Divider />
