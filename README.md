@@ -1,6 +1,6 @@
 <p align="center"><img src="public/img/logo/logo.transp.full.png" width="300px"></p>
 
-# Dungeons & Dragons NextJS App
+# The Ultimate Dungeons & Dragons App
 This is a full stack web app that allows someone to search for Dungeons & Dragons info and pictures.  It's a fun project to explore some of the finer points of NextJS, graphQL and Material, and play with Midjourney (filling out the second half of the Monster Manual and creating the logo and favicon with generated images), among other things.  Enjoy!
 
 
