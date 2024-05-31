@@ -69,6 +69,14 @@ const MONSTER_BASIC_INFO_FRAGMENT = gql`
 const MONSTER_DETAILED_INFO_FRAGMENT = gql`
   fragment MonsterDetailedInfo on Monster {
     ...MonsterBasicInfo
+    speed {
+      burrow
+      climb
+      fly
+      hover
+      swim
+      walk
+    }
     actions {
       actions {
         action_name
@@ -78,6 +86,8 @@ const MONSTER_DETAILED_INFO_FRAGMENT = gql`
       attacks {
         name
       }
+      desc
+      name
     }
     condition_immunities {
       desc
@@ -134,6 +144,7 @@ const MONSTER_DETAILED_INFO_FRAGMENT = gql`
     }
     special_abilities {
       name
+      desc
     }
     reactions {
       name
@@ -152,6 +163,19 @@ query MonstersQuery($limit: Int!, $skip: Int, $name: String) {
 ${MONSTER_BASIC_INFO_FRAGMENT}
 `;
 
+//...MonsterDetailedInfo
+const GET_MONSTER_QUERY = gql`
+query MonsterQuery($index: String) {
+  monster(index: $index) {
+    name
+    desc
+    ...MonsterDetailedInfo
+  }
+}
+
+${MONSTER_DETAILED_INFO_FRAGMENT}
+`;
+
 interface MonstersGQLQueryVariables {
   limit: number;
   skip: number;
@@ -162,4 +186,12 @@ type UseMonstersQueryVariables = Partial<MonstersGQLQueryVariables>;
 
 export const useMonstersQuery = ({ name = '', limit = MONSTERS_QUERY_MAX_SIZE, skip = 0 }: UseMonstersQueryVariables)  => {
   return useQuery<{ monsters: Monster[] }, MonstersGQLQueryVariables>(GET_MONSTERS_LISTING_QUERY, { variables: { limit, skip, name } });
+};
+
+interface MonsterGQLQueryVariables {
+  index: string;
+}
+
+export const useMonsterQuery = (index: string)  => {
+  return useQuery<{ monster: Monster }, MonsterGQLQueryVariables>(GET_MONSTER_QUERY, { variables: { index } });
 };

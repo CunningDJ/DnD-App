@@ -22,9 +22,9 @@ const MonstersList: FC<MonstersListProps> = ({ loading, error, monsters }) => {
   if (error) return <H3>Error: {error.message}</H3>;
   return monsters && (
     <Container>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {monsters.map((monster, idx) => (
-          <Grid xs={3} key={idx}><MonsterCard data={monster} key={idx} /></Grid>
+          <Grid xs={12} md={6} lg={3} key={idx}><MonsterCard data={monster} key={idx} /></Grid>
         ))}
       </Grid>
     </Container>
@@ -38,7 +38,7 @@ export default function MonstersListPage() {
 
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const { loading, data, error } = useMonstersQuery({  });
+  const { loading, data, error } = useMonstersQuery({ name: activeSearchString });
   // If we want pagination by gql query:
   // const { loading, data, error } = useMonstersQuery({ limit: MONSTERS_PAGE_SIZE, skip: activePageNumber, name: activeSearchString });
   
@@ -51,6 +51,7 @@ export default function MonstersListPage() {
     const searchTimeoutId = setTimeout(() => {
       setActiveSearchString(searchString);
     }, SEARCH_DELAY_MS);
+    // open file, write something
 
     return () => clearTimeout(searchTimeoutId);
   }, [searchString]);

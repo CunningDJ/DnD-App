@@ -48,11 +48,6 @@ const theme = createTheme({
         }
       ]
     }
-  },
-  typography: {
-    h1: {
-      fontFamily: bungeeSpice.style.fontFamily
-    }
   }
 });
 
