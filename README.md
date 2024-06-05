@@ -5,6 +5,12 @@ This is a full stack web app that allows someone to search for Dungeons & Dragon
 
 
 ## Development
+### Setup
+1. [Install nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating)
+3. Clone this repo with `git clone git@github.com:CunningDJ/DnD-App.git`
+4. In the repo directory, run `nvm use`, and `npm install`
+Now you're ready to run the dev or production server! (see below)
+
 ### Run the development server
 ```bash
 npm run dev
@@ -21,6 +27,15 @@ bun dev
 npm run lint # Check the lint
 # or
 npm run lint:fix # Check & auto-fix the lint
+```
+
+## Run the production server
+```bash
+# Builds the production code
+npm run build
+
+# Runs the production code
+npm start
 ```
 
 ## Adding Monster Images
