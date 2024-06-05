@@ -1,6 +1,6 @@
 'use client';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { FC, PropsWithChildren } from 'react';
 
 import { DND_GRAPHQL_API } from './dndApi';
